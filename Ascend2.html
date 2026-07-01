@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#0C0C0C">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Ascend">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='96' fill='%230C0C0C'/><path d='M256 130L390 350L122 350Z' fill='%23D4A04A' opacity='.25'/><path d='M256 190L360 350L152 350Z' fill='%23D4A04A'/><circle cx='370' cy='150' r='38' fill='%23D4A04A'/></svg>">
+<title>Ascend — Personal Growth Hub</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script>
+tailwind.config={theme:{extend:{colors:{bg:'#0C0C0C',card:'#161616',elevated:'#1E1E1E',border:'#2A2826',fg:'#F0EBE3',muted:'#7A756C',accent:'#D4A04A','accent-h':'#E8B55A',success:'#5CB85C',danger:'#D9534F',work:'#4A9BD9',personal:'#B07CD8',financial:'#4DB87A'},fontFamily:{heading:['Space Grotesk','sans-serif'],body:['DM Sans','sans-serif']}}}}
+</script>
+<style>
+*{scrollbar-width:thin;scrollbar-color:#2A2826 transparent}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:#2A2826;border-radius:3px}
+body{-webkit-tap-highlight-color:transparent}
+#app{transition:opacity .15s ease,transform .15s ease}
+.nav-item{transition:all .2s ease}.nav-item:hover{background:rgba(212,160,74,.08)}.nav-item.active{background:rgba(212,160,74,.15);color:#D4A04A}
+.nav-item.active .nav-icon{color:#D4A04A}
+.card{background:#161616;border:1px solid #2A2826;border-radius:12px;transition:border-color .2s,box-shadow .2s}.card:hover{border-color:#3A3836}
+.btn-accent{background:#D4A04A;color:#0C0C0C;font-weight:600;border-radius:10px;padding:10px 20px;transition:all .2s}.btn-accent:hover{background:#E8B55A;transform:translateY(-1px)}
+.btn-ghost{background:transparent;border:1px solid #2A2826;color:#F0EBE3;border-radius:10px;padding:8px 16px;transition:all .2s}.btn-ghost:hover{border-color:#D4A04A;color:#D4A04A}
+.input-field{background:#0C0C0C;border:1px solid #2A2826;border-radius:10px;padding:10px 14px;color:#F0EBE3;width:100%;transition:border-color .2s;outline:none;font-family:'DM Sans',sans-serif}.input-field:focus{border-color:#D4A04A}
+.input-field::placeholder{color:#5A5650}
+select.input-field{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%237A756C' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center}
+.toast{transform:translateX(120%);transition:transform .3s ease;max-width:340px}.toast.show{transform:translateX(0)}
+.toggle{width:44px;height:24px;border-radius:12px;background:#2A2826;position:relative;cursor:pointer;transition:background .2s}.toggle.on{background:#D4A04A}.toggle::after{content:'';position:absolute;width:20px;height:20px;border-radius:50%;background:#F0EBE3;top:2px;left:2px;transition:transform .2s}.toggle.on::after{transform:translateX(20px)}
+.hour-row{transition:background .15s}.hour-row:hover{background:rgba(212,160,74,.04)}
+.hour-row.now{border-left:3px solid #D4A04A!important;background:rgba(212,160,74,.06)!important}
+.habit-check{width:28px;height:28px;border-radius:8px;border:2px solid #2A2826;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;font-size:12px}.habit-check.done{background:#D4A04A;border-color:#D4A04A;color:#0C0C0C}
+.prio-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.cat-badge{font-size:11px;padding:2px 8px;border-radius:6px;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+.vision-grid{columns:2;column-gap:12px}.vision-grid .vision-card{break-inside:avoid;margin-bottom:12px}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.animate-in{animation:fadeIn .35s ease both}
+.animate-in-d1{animation-delay:.05s}.animate-in-d2{animation-delay:.1s}.animate-in-d3{animation-delay:.15s}.animate-in-d4{animation-delay:.2s}.animate-in-d5{animation-delay:.25s}
+@keyframes orbFloat{0%,100%{transform:translate(0,0)}50%{transform:translate(-40px,40px)}}
+.bg-orb{position:fixed;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(212,160,74,.05) 0%,transparent 70%);top:-150px;right:-150px;animation:orbFloat 25s ease-in-out infinite;pointer-events:none;z-index:0}
+.progress-ring{transform:rotate(-90deg)}
+.block-chip{transition:all .2s}.block-chip:hover{filter:brightness(1.2)}
+@keyframes pulseGlow{0%,100%{box-shadow:0 0 0 0 rgba(212,160,74,.3)}50%{box-shadow:0 0 0 6px rgba(212,160,74,0)}}
+.pulse-glow{animation:pulseGlow 2s infinite}
+@media(min-width:768px){.vision-grid{columns:3}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body class="h-full bg-bg text-fg font-body overflow-hidden">
+<div class="bg-orb"></div>
+
+<aside id="sidebar" class="fixed left-0 top-0 h-full w-[68px] md:w-[210px] bg-card/80 backdrop-blur-xl border-r border-border z-40 flex flex-col">
+  <div class="h-14 flex items-center justify-center md:justify-start md:px-5 border-b border-border shrink-0">
+    <i class="fa-solid fa-mountain-sun text-accent text-lg"></i>
+    <span class="hidden md:inline ml-3 font-heading font-bold text-base tracking-tight">Ascend</span>
+  </div>
+  <nav id="side-nav" class="flex-1 py-3 flex flex-col gap-0.5 px-2 md:px-3 overflow-y-auto"></nav>
+  <div class="p-3 border-t border-border hidden md:block"><p class="text-[10px] text-muted text-center">All data stored locally</p></div>
+</aside>
+
+<nav id="bottom-nav" class="fixed bottom-0 left-0 w-full h-[58px] bg-card/90 backdrop-blur-xl border-t border-border z-40 flex items-center justify-around md:hidden px-1"></nav>
+
+<main id="app" class="ml-[68px] md:ml-[210px] mb-[58px] md:mb-0 h-full overflow-y-auto relative z-10"></main>
+
+<div id="toasts" class="fixed top-4 right-4 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+<div id="modal-overlay" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden items-end md:items-center justify-center" onclick="closeModal()">
+  <div id="modal-content" class="bg-elevated rounded-t-2xl md:rounded-2xl w-full md:max-w-md max-h-[85vh] overflow-y-auto p-5 border border-border" onclick="event.stopPropagation()"></div>
+</div>
+
+<script>
+/* ===== CONSTANTS ===== */
+const NAV=[
+  {id:'summary',icon:'fa-house',label:'Summary'},
+  {id:'routine',icon:'fa-clock',label:'Routine'},
+  {id:'habits',icon:'fa-circle-check',label:'Habits'},
+  {id:'braindump',icon:'fa-lightbulb',label:'Brain Dump'},
+  {id:'todos',icon:'fa-list-check',label:'To-Do'},
+  {id:'vision',icon:'fa-icons',label:'Vision'},
+  {id:'goals',icon:'fa-bullseye',label:'Goals'}
+];
+const HABIT_ICONS=['fa-spa','fa-dumbbell','fa-book-open','fa-pen-fancy','fa-glass-water','fa-bed','fa-apple-whole','fa-person-walking','fa-music','fa-code','fa-brain','fa-heart','fa-moon','fa-sun','fa-leaf','fa-bicycle','fa-person-swimming','fa-pills','fa-mug-hot','fa-hands-praying','fa-droplet','fa-fire','fa-seedling','fa-palette'];
+const CAT_COLORS={work:'#4A9BD9',personal:'#B07CD8',financial:'#4DB87A'};
+const PRIO_COLORS={high:'#D9534F',medium:'#D4A04A',low:'#5CB85C'};
+const VISION_COLORS=['#D4A04A','#4DB87A','#B07CD8','#4A9BD9','#D9534F','#E87040','#5CB85C','#C77DBA'];
+const BLOCK_COLORS=['#4A6FA5','#7B68AE','#2E8B6E','#C4785B','#8B7355','#5A8F8F','#9B4D5A','#6B8F4E'];
+
+/* ===== UTILITIES ===== */
+const uid=()=>'_'+Math.random().toString(36).slice(2,9);
+const esc=s=>{const d=document.createElement('div');d.textContent=s;return d.innerHTML};
+const fmtHour=h=>h===0?'12 AM':h===12?'12 PM':h<12?h+' AM':(h-12)+' PM';
+const fmtHourShort=h=>{if(h===0||h===12)return'12';return h<12?h:(h-12)};
+const fmtAmPm=h=>h<12?'AM':'PM';
+function fmtDateKey(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function getToday(){return fmtDateKey(new Date())}
+function fmtDateNice(s){const d=new Date(s+'T12:00:00');return d.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'})}
+function addDays(s,n){const d=new Date(s+'T12:00:00');d.setDate(d.getDate()+n);return fmtDateKey(d)}
+function getWeekDates(s){const d=new Date(s+'T12:00:00');const day=d.getDay();const mon=new Date(d);mon.setDate(d.getDate()-(day===0?6:day-1));return Array.from({length:7},(_,i)=>{const dd=new Date(mon);dd.setDate(mon.getDate()+i);return fmtDateKey(dd)})}
+function getGreeting(){const h=new Date().getHours();return h<12?'Good Morning':h<17?'Good Afternoon':'Good Evening'}
+function daysUntil(s){const t=new Date();t.setHours(0,0,0,0);const d=new Date(s+'T12:00:00');return Math.ceil((d-t)/(86400000))}
+
+/* ===== TIME BLOCK HELPERS ===== */
+function isInBlock(hour,block){
+  if(block.startHour===block.endHour)return hour===block.startHour;
+  if(block.startHour>block.endHour)return hour>=block.startHour||hour<block.endHour;
+  return hour>=block.startHour&&hour<block.endHour;
+}
+function getBlockForHour(hour){
+  for(let i=state.timeBlocks.length-1;i>=0;i--){if(isInBlock(hour,state.timeBlocks[i]))return state.timeBlocks[i]}
+  return null;
+}
+function isSegmentStart(hour,block){
+  if(block.startHour>block.endHour)return hour===block.startHour||hour===0;
+  return hour===block.startHour;
+}
+function isSegmentEnd(hour,block){
+  if(block.startHour>block.endHour){
+    if(hour===23)return true;
+    if(block.endHour>0&&hour===block.endHour-1)return true;
+    if(block.endHour===0)return false;
+    return false;
+  }
+  return hour===block.endHour-1;
+}
+function blockHourCount(block){
+  if(block.startHour===block.endHour)return 1;
+  if(block.startHour>block.endHour)return block.endHour>0?(24-block.startHour)+block.endHour:24-block.startHour;
+  return block.endHour-block.startHour;
+}
+function blockTimeRange(block){
+  const sh=block.startHour,eh=block.endHour;
+  return fmtHour(sh)+' \u2013 '+fmtHour(eh);
+}
+
+/* ===== STATE ===== */
+let state;
+const defaultState=()=>{
+  const today=getToday();
+  return{
+    routine:{},
+    timeBlocks:[
+      {id:uid(),name:'Sleep',startHour:22,endHour:7,color:'#4A6FA5'},
+      {id:uid(),name:'Office Work',startHour:9,endHour:12,color:'#D4A04A'}
+    ],
+    habits:[
+      {id:uid(),name:'Morning Meditation',icon:'fa-spa',reminder:true,reminderTime:'06:30',completedDates:[]},
+      {id:uid(),name:'Exercise',icon:'fa-dumbbell',reminder:true,reminderTime:'07:00',completedDates:[]},
+      {id:uid(),name:'Read 30 Minutes',icon:'fa-book-open',reminder:false,reminderTime:'21:00',completedDates:[]},
+      {id:uid(),name:'Journal',icon:'fa-pen-fancy',reminder:true,reminderTime:'22:00',completedDates:[]},
+      {id:uid(),name:'Drink 8 Glasses Water',icon:'fa-glass-water',reminder:false,reminderTime:'09:00',completedDates:[]}
+    ],
+    brainDump:[],
+    todos:[],
+    visionBoard:[
+      {id:uid(),type:'text',content:'Travel the world',color:'#D4A04A'},
+      {id:uid(),type:'text',content:'Build something meaningful',color:'#4DB87A'},
+      {id:uid(),type:'text',content:'Learn to play piano',color:'#B07CD8'},
+      {id:uid(),type:'image',url:'https://picsum.photos/seed/ascend1/400/300'},
+      {id:uid(),type:'image',url:'https://picsum.photos/seed/ascend2/400/250'},
+      {id:uid(),type:'text',content:'Financial freedom',color:'#4A9BD9'}
+    ],
+    goals:[
+      {id:uid(),title:'Learn Spanish',description:'Reach conversational fluency',deadline:'2025-12-31',milestones:[
+        {id:uid(),text:'Complete Duolingo course',done:false},
+        {id:uid(),text:'Finish A1 textbook',done:true},
+        {id:uid(),text:'5-minute conversation',done:false},
+        {id:uid(),text:'Watch movie without subtitles',done:false}
+      ]},
+      {id:uid(),title:'Run a Marathon',description:'Complete a full 42.2km marathon',deadline:'2025-10-01',milestones:[
+        {id:uid(),text:'Run 5K non-stop',done:true},
+        {id:uid(),text:'Run 10K non-stop',done:true},
+        {id:uid(),text:'Complete half marathon',done:false},
+        {id:uid(),text:'Finish full marathon',done:false}
+      ]}
+    ],
+    currentView:'summary',
+    selectedDate:today,
+    shownReminders:{},
+    todoFilter:'all',
+    expandedGoal:null,
+    showTodoForm:false
+  }
+};
+
+/* ===== PERSISTENCE ===== */
+function loadState(){
+  try{const s=localStorage.getItem('ascend_state');if(s){state=JSON.parse(s);
+  if(!state.shownReminders)state.shownReminders={};
+  if(!state.todoFilter)state.todoFilter='all';
+  if(state.expandedGoal===undefined)state.expandedGoal=null;
+  if(state.showTodoForm===undefined)state.showTodoForm=false;
+  if(!state.timeBlocks)state.timeBlocks=[];
+  }else state=defaultState()}catch(e){state=defaultState()}
+}
+function saveState(){try{localStorage.setItem('ascend_state',JSON.stringify(state))}catch(e){}}
+
+/* ===== TOAST ===== */
+function toast(msg,type='info',dur=3000){
+  const t=document.createElement('div');
+  const icons={success:'fa-circle-check',error:'fa-circle-xmark',info:'fa-bell',warning:'fa-triangle-exclamation'};
+  const colors={success:'#5CB85C',error:'#D9534F',info:'#D4A04A',warning:'#E87040'};
+  t.className='toast pointer-events-auto flex items-center gap-3 bg-elevated border border-border rounded-xl px-4 py-3 shadow-xl';
+  t.innerHTML=`<i class="fa-solid ${icons[type]||icons.info}" style="color:${colors[type]||colors.info}"></i><span class="text-sm text-fg">${esc(msg)}</span>`;
+  document.getElementById('toasts').appendChild(t);
+  requestAnimationFrame(()=>t.classList.add('show'));
+  setTimeout(()=>{t.classList.remove('show');setTimeout(()=>t.remove(),300)},dur);
+}
+
+/* ===== MODAL ===== */
+function showModal(html){
+  const o=document.getElementById('modal-overlay');
+  document.getElementById('modal-content').innerHTML=html;
+  o.classList.remove('hidden');o.classList.add('flex');
+}
+function closeModal(){const o=document.getElementById('modal-overlay');o.classList.add('hidden');o.classList.remove('flex')}
+
+/* ===== NAVIGATION ===== */
+function buildNav(){
+  const side=document.getElementById('side-nav');
+  const bot=document.getElementById('bottom-nav');
+  side.innerHTML=NAV.map(n=>`<button class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-xl cursor-pointer text-muted w-full text-left ${state.currentView===n.id?'active':''}" data-nav="${n.id}" aria-label="${n.label}">
+    <i class="fa-solid ${n.icon} nav-icon w-5 text-center text-sm"></i>
+    <span class="hidden md:inline text-sm font-medium">${n.label}</span>
+  </button>`).join('');
+  bot.innerHTML=NAV.map(n=>`<button class="nav-item flex flex-col items-center gap-0.5 py-1 px-2 rounded-xl cursor-pointer text-muted flex-1 ${state.currentView===n.id?'active':''}" data-nav="${n.id}" aria-label="${n.label}">
+    <i class="fa-solid ${n.icon} nav-icon text-[15px]"></i>
+    <span class="text-[9px] font-medium">${n.label.split(' ')[0]}</span>
+  </button>`).join('');
+}
+function navigate(view){
+  if(state.currentView===view)return;
+  const app=document.getElementById('app');
+  app.style.opacity='0';app.style.transform='translateY(8px)';
+  setTimeout(()=>{state.currentView=view;state.showTodoForm=false;state.expandedGoal=null;render();buildNav();saveState();
+    app.style.opacity='1';app.style.transform='translateY(0)';
+  },120);
+}
+document.addEventListener('click',e=>{const n=e.target.closest('[data-nav]');if(n)navigate(n.dataset.nav)});
+
+/* ===== RENDER ===== */
+function render(){
+  const app=document.getElementById('app');
+  const v=state.currentView;
+  if(v==='summary')app.innerHTML=renderSummary();
+  else if(v==='routine')app.innerHTML=renderRoutine();
+  else if(v==='habits')app.innerHTML=renderHabits();
+  else if(v==='braindump')app.innerHTML=renderBrainDump();
+  else if(v==='todos')app.innerHTML=renderTodos();
+  else if(v==='vision')app.innerHTML=renderVision();
+  else if(v==='goals')app.innerHTML=renderGoals();
+  if(v==='routine'){const now=document.getElementById('hour-now');if(now)now.scrollIntoView({block:'center',behavior:'smooth'})}
+}
+
+/* ----- SUMMARY ----- */
+function renderSummary(){
+  const d=state.selectedDate,today=getToday(),isToday=d===today;
+  const rd=state.routine[d]||{};
+  const filledHours=Object.entries(rd).filter(([,v])=>v&&v.trim());
+  // include blocked hours without individual notes
+  const blockedHours=[];
+  for(let h=0;h<24;h++){
+    const blk=getBlockForHour(h);
+    if(blk&&!rd[h])blockedHours.push({hour:h,name:blk.name,color:blk.color});
+  }
+  const habitsDone=state.habits.filter(h=>h.completedDates.includes(d)).length;
+  const habitsTotal=state.habits.length;
+  const habitsPct=habitsTotal?Math.round(habitsDone/habitsTotal*100):0;
+  const bdEntries=state.brainDump.filter(b=>b.date===d);
+  const dayTodos=state.todos.filter(t=>t.date===d);
+  const todosDone=dayTodos.filter(t=>t.completed).length;
+  const todosTotal=dayTodos.length;
+  const hoursTracked=filledHours.length+blockedHours.length;
+  return`<div class="max-w-3xl mx-auto p-4 md:p-6 space-y-5">
+    <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-accent/10 to-transparent border border-accent/20 p-5 animate-in">
+      <div class="absolute -right-8 -top-8 w-28 h-28 rounded-full bg-accent/5"></div>
+      <div class="absolute -right-3 -bottom-3 w-16 h-16 rounded-full bg-accent/5"></div>
+      <div class="flex items-center justify-between flex-wrap gap-3">
+        <div>
+          <h1 class="font-heading text-2xl md:text-3xl font-bold">${isToday?getGreeting():'Daily Review'}</h1>
+          <p class="text-muted text-sm mt-1">${fmtDateNice(d)}${isToday?' &mdash; Today':''}</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button class="btn-ghost text-sm px-3 py-2" data-action="prev-day"><i class="fa-solid fa-chevron-left"></i></button>
+          ${!isToday?`<button class="btn-ghost text-sm px-3 py-2" data-action="today-btn">Today</button>`:''}
+          <button class="btn-ghost text-sm px-3 py-2" data-action="next-day"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+      </div>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 animate-in animate-in-d1">
+      ${statCard('fa-clock','Hours Tracked',hoursTracked+'/24','#D4A04A')}
+      ${statCard('fa-circle-check','Habits',habitsDone+'/'+habitsTotal,habitsPct>=100?'#5CB85C':'#D4A04A')}
+      ${statCard('fa-list-check','Tasks',todosDone+'/'+todosTotal,todosDone===todosTotal&&todosTotal?'#5CB85C':'#4A9BD9')}
+      ${statCard('fa-lightbulb','Ideas',bdEntries.length,'#E87040')}
+    </div>
+    <div class="card p-4 animate-in animate-in-d2">
+      <div class="flex items-center justify-between mb-3">
+        <h2 class="font-heading font-semibold text-base"><i class="fa-solid fa-clock text-accent mr-2 text-sm"></i>Hourly Routine</h2>
+        <button class="text-xs text-accent hover:underline" data-action="go-routine">View Full</button>
+      </div>
+      ${(filledHours.length||blockedHours.length)?`<div class="space-y-1.5 max-h-48 overflow-y-auto">
+        ${blockedHours.sort((a,b)=>a.hour-b.hour).map(b=>`<div class="flex items-center gap-3 text-sm"><span class="text-muted text-xs w-14 shrink-0">${fmtHour(b.hour)}</span><span class="text-xs px-1.5 py-0.5 rounded" style="background:${b.color}20;color:${b.color}">${esc(b.name)}</span></div>`).join('')}
+        ${filledHours.sort(([a],[b])=>+a-+b).map(([h,v])=>`<div class="flex items-center gap-3 text-sm"><span class="text-muted text-xs w-14 shrink-0">${fmtHour(+h)}</span><span class="text-fg/80 truncate">${esc(v)}</span></div>`).join('')}
+      </div>`:`<p class="text-muted text-sm">No hours logged yet</p>`}
+    </div>
+    <div class="card p-4 animate-in animate-in-d3">
+      <div class="flex items-center justify-between mb-3">
+        <h2 class="font-heading font-semibold text-base"><i class="fa-solid fa-circle-check text-accent mr-2 text-sm"></i>Habits</h2>
+        <button class="text-xs text-accent hover:underline" data-action="go-habits">Manage</button>
+      </div>
+      <div class="flex items-center gap-4">
+        <svg viewBox="0 0 36 36" class="w-16 h-16 shrink-0 progress-ring">
+          <path d="M18 2.0845a15.9155 15.9155 0 010 31.831 15.9155 15.9155 0 010-31.831" fill="none" stroke="#2A2826" stroke-width="3"/>
+          <path d="M18 2.0845a15.9155 15.9155 0 010 31.831 15.9155 15.9155 0 010-31.831" fill="none" stroke="#D4A04A" stroke-width="3" stroke-dasharray="${habitsPct},100" stroke-linecap="round"/>
+          <text x="18" y="20.5" text-anchor="middle" fill="#F0EBE3" font-size="8" font-family="Space Grotesk" font-weight="600">${habitsPct}%</text>
+        </svg>
+        <div class="flex-1 grid grid-cols-1 gap-1">
+          ${state.habits.map(h=>`<div class="flex items-center gap-2 text-sm">
+            <i class="fa-solid ${h.icon} w-4 text-center text-xs ${h.completedDates.includes(d)?'text-accent':'text-muted'}"></i>
+            <span class="${h.completedDates.includes(d)?'text-fg':'text-muted'}">${esc(h.name)}</span>
+            ${h.completedDates.includes(d)?'<i class="fa-solid fa-check text-success text-xs ml-auto"></i>':''}
+          </div>`).join('')}
+        </div>
+      </div>
+    </div>
+    <div class="card p-4 animate-in animate-in-d4">
+      <div class="flex items-center justify-between mb-3">
+        <h2 class="font-heading font-semibold text-base"><i class="fa-solid fa-lightbulb text-accent mr-2 text-sm"></i>Brain Dump</h2>
+        <button class="text-xs text-accent hover:underline" data-action="go-braindump">View All</button>
+      </div>
+      ${bdEntries.length?`<div class="space-y-2 max-h-40 overflow-y-auto">${bdEntries.map(b=>`
+        <div class="flex items-start gap-2 text-sm"><span class="text-muted text-xs shrink-0 mt-0.5">${b.time}</span><span class="text-fg/80">${esc(b.text)}</span></div>
+      `).join('')}</div>`:`<p class="text-muted text-sm">No ideas captured</p>`}
+    </div>
+    <div class="card p-4 animate-in animate-in-d5">
+      <div class="flex items-center justify-between mb-3">
+        <h2 class="font-heading font-semibold text-base"><i class="fa-solid fa-list-check text-accent mr-2 text-sm"></i>Tasks</h2>
+        <button class="text-xs text-accent hover:underline" data-action="go-todos">Manage</button>
+      </div>
+      ${todosTotal?`<div class="space-y-2">${['work','personal','financial'].map(cat=>{
+        const ct=dayTodos.filter(t=>t.category===cat);if(!ct.length)return'';
+        const cd=ct.filter(t=>t.completed).length;
+        return`<div class="flex items-center gap-2 text-sm"><span class="cat-badge" style="background:${CAT_COLORS[cat]}20;color:${CAT_COLORS[cat]}">${cat}</span><span class="text-muted">${cd}/${ct.length} done</span>
+        <div class="flex-1 h-1.5 bg-border rounded-full overflow-hidden"><div class="h-full rounded-full" style="width:${ct.length?Math.round(cd/ct.length*100):0}%;background:${CAT_COLORS[cat]}"></div></div></div>`
+      }).join('')}</div>`:`<p class="text-muted text-sm">No tasks for this day</p>`}
+    </div>
+    <div class="card p-4 animate-in animate-in-d5">
+      <div class="flex items-center justify-between mb-3">
+        <h2 class="font-heading font-semibold text-base"><i class="fa-solid fa-bullseye text-accent mr-2 text-sm"></i>Goal Progress</h2>
+        <button class="text-xs text-accent hover:underline" data-action="go-goals">View Goals</button>
+      </div>
+      <div class="space-y-3">${state.goals.map(g=>{
+        const done=g.milestones.filter(m=>m.done).length;const total=g.milestones.length;const pct=total?Math.round(done/total*100):0;
+        const days=daysUntil(g.deadline);
+        return`<div><div class="flex items-center justify-between text-sm mb-1"><span class="font-medium">${esc(g.title)}</span><span class="text-muted text-xs">${days>0?days+'d left':days===0?'Due today':'Overdue'}</span></div>
+        <div class="h-2 bg-border rounded-full overflow-hidden"><div class="h-full rounded-full transition-all" style="width:${pct}%;background:#D4A04A"></div></div></div>`
+      }).join('')}</div>
+    </div>
+    <div class="h-4"></div>
+  </div>`;
+}
+function statCard(icon,label,value,color){
+  return`<div class="card p-3 text-center"><i class="fa-solid ${icon} text-lg mb-1.5" style="color:${color}"></i><div class="text-lg font-heading font-bold">${value}</div><div class="text-[11px] text-muted">${label}</div></div>`
+}
+
+/* ----- ROUTINE (with Time Blocks) ----- */
+function renderRoutine(){
+  const d=state.selectedDate,rd=state.routine[d]||{},nowH=new Date().getHours(),isToday=d===getToday();
+  // Build time block chips
+  let chipsHtml=state.timeBlocks.map(b=>`
+    <div class="block-chip flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs shrink-0 cursor-pointer" style="background:${b.color}12;border:1px solid ${b.color}25" data-action="edit-block" data-bid="${b.id}">
+      <div class="w-2.5 h-2.5 rounded-full shrink-0" style="background:${b.color}"></div>
+      <span class="font-medium" style="color:${b.color}">${esc(b.name)}</span>
+      <span class="text-muted">${blockTimeRange(b)}</span>
+      <span class="text-muted opacity-60">${blockHourCount(b)}h</span>
+      <button class="text-muted hover:text-danger ml-0.5 transition-colors" data-action="delete-block" data-bid="${b.id}" onclick="event.stopPropagation()"><i class="fa-solid fa-xmark text-[10px]"></i></button>
+    </div>
+  `).join('');
+
+  // Build hour rows
+  let rowsHtml='';
+  for(let h=0;h<24;h++){
+    const block=getBlockForHour(h);
+    const note=rd[h]||'';
+    const isNow=isToday&&h===nowH;
+    const segStart=block&&isSegmentStart(h,block);
+    const segEnd=block&&isSegmentEnd(h,block);
+
+    // Block segment header
+    if(segStart){
+      rowsHtml+=`<div class="mt-3 first:mt-0">
+        <div class="flex items-center gap-2 px-4 py-2 rounded-t-lg" style="background:${block.color}0A;border-left:3px solid ${block.color};border-right:1px solid ${block.color}18;border-top:1px solid ${block.color}18">
+          <div class="w-2.5 h-2.5 rounded-full shrink-0" style="background:${block.color}"></div>
+          <span class="font-heading font-semibold text-sm" style="color:${block.color}">${esc(block.name)}</span>
+          <span class="text-[11px] text-muted">${blockTimeRange(block)} &middot; ${blockHourCount(block)}h</span>
+          <div class="ml-auto flex items-center gap-2">
+            <button class="text-muted hover:text-fg text-xs transition-colors" data-action="edit-block" data-bid="${block.id}"><i class="fa-solid fa-pen text-[10px]"></i></button>
+            <button class="text-muted hover:text-danger text-xs transition-colors" data-action="delete-block" data-bid="${block.id}"><i class="fa-solid fa-trash-can text-[10px]"></i></button>
+          </div>
+        </div>`;
+    }
+
+    // Hour row
+    if(block){
+      rowsHtml+=`<div class="hour-row flex items-stretch gap-3 px-4 py-2 cursor-pointer ${isNow?'now':''}" style="border-left:2px solid ${block.color};background:${block.color}04;border-right:1px solid ${block.color}0A${segEnd?';border-bottom:1px solid '+block.color+'18;border-radius:0 0 8px 8px':''}" data-action="edit-hour" data-hour="${h}">
+        <div class="w-14 shrink-0 flex flex-col items-start pt-0.5">
+          <span class="text-xs ${isNow?'text-accent font-medium':'text-muted'}">${fmtHour(h)}</span>
+          ${isNow?'<span class="text-[9px] text-accent font-semibold mt-0.5">NOW</span>':''}
+        </div>
+        <div class="flex-1 flex items-center gap-2 min-h-[28px] pb-1 border-b border-border/30">
+          <span class="text-[10px] px-1.5 py-0.5 rounded shrink-0" style="background:${block.color}18;color:${block.color}">${esc(block.name)}</span>
+          ${note?`<span class="text-sm text-fg/80 truncate">${esc(note)}</span>`:`<span class="text-xs text-muted/30">tap to add note</span>`}
+        </div>
+      </div>`;
+      if(segEnd)rowsHtml+=`</div>`;
+    } else {
+      // Close any open block segment container
+      rowsHtml+=`<div class="hour-row flex items-stretch gap-3 px-4 py-2.5 cursor-pointer rounded-lg ${isNow?'now':''}" data-action="edit-hour" data-hour="${h}" id="${isNow?'hour-now':''}">
+        <div class="w-14 shrink-0 flex flex-col items-start pt-0.5">
+          <span class="text-xs font-medium ${isNow?'text-accent':'text-muted'}">${fmtHour(h)}</span>
+          ${isNow?'<span class="text-[9px] text-accent font-semibold mt-0.5">NOW</span>':''}
+        </div>
+        <div class="flex-1 border-b border-border/50 pb-2 min-h-[28px] flex items-center">
+          ${note?`<span class="text-sm text-fg/90">${esc(note)}</span>`:`<span class="text-sm text-muted/40">Tap to log activity</span>`}
+        </div>
+      </div>`;
+    }
+  }
+
+  // Hour select options
+  const hourOpts=Array.from({length:24},(_,h)=>`<option value="${h}">${fmtHour(h)} (${h}:00)</option>`).join('');
+
+  return`<div class="max-w-2xl mx-auto p-4 md:p-6 space-y-4">
+    <div class="animate-in">
+      <div class="flex items-center justify-between flex-wrap gap-3 mb-1">
+        <h1 class="font-heading text-xl md:text-2xl font-bold">Hourly Routine</h1>
+        <div class="flex items-center gap-2">
+          <button class="btn-ghost text-sm px-3 py-2" data-action="prev-day"><i class="fa-solid fa-chevron-left"></i></button>
+          <input type="date" class="input-field text-sm !py-2 !w-auto" value="${d}" data-action="date-change">
+          <button class="btn-ghost text-sm px-3 py-2" data-action="next-day"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+      </div>
+      <p class="text-muted text-sm">Track how you spend each hour. Create blocks for recurring activities.</p>
+    </div>
+
+    <!-- Time Blocks Bar -->
+    <div class="animate-in animate-in-d1">
+      <div class="flex items-center gap-2 mb-2">
+        <span class="text-xs font-medium text-muted uppercase tracking-wider"><i class="fa-solid fa-layer-group mr-1"></i>Time Blocks</span>
+      </div>
+      <div class="flex gap-2 overflow-x-auto pb-1 ${!state.timeBlocks.length?'hidden':''}">
+        ${chipsHtml}
+      </div>
+      <button class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs text-muted border border-dashed border-border hover:border-accent hover:text-accent shrink-0 transition-colors mt-1" data-action="add-block">
+        <i class="fa-solid fa-plus text-[10px]"></i> New Time Block
+      </button>
+    </div>
+
+    <!-- Hour Timeline -->
+    <div class="card overflow-hidden animate-in animate-in-d2 divide-y divide-border/30" style="divide-y:none">
+      ${rowsHtml}
+    </div>
+    <div class="h-4"></div>
+  </div>`;
+}
+
+/* ----- HABITS ----- */
+function renderHabits(){
+  const week=getWeekDates(state.selectedDate);
+  const dayLabels=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+  const today=getToday();
+  return`<div class="max-w-2xl mx-auto p-4 md:p-6 space-y-4">
+    <div class="flex items-center justify-between animate-in">
+      <div><h1 class="font-heading text-xl md:text-2xl font-bold">Habit Tracker</h1><p class="text-muted text-sm mt-0.5">Build consistency, one day at a time</p></div>
+      <button class="btn-accent text-sm" data-action="add-habit"><i class="fa-solid fa-plus mr-1.5"></i>Add</button>
+    </div>
+    <div class="flex items-center gap-2 animate-in animate-in-d1">
+      <div class="w-8 md:w-40 shrink-0"></div>
+      <div class="flex-1 grid grid-cols-7 gap-1 text-center">
+        ${week.map((d,i)=>`<div class="text-[10px] font-medium ${d===today?'text-accent':'text-muted'}">${dayLabels[i]}<br><span class="text-[9px]">${new Date(d+'T12:00:00').getDate()}</span></div>`).join('')}
+      </div>
+      <div class="w-20 shrink-0"></div>
+    </div>
+    <div class="space-y-2">${state.habits.map((h,hi)=>`
+      <div class="card p-3 animate-in" style="animation-delay:${hi*0.04}s">
+        <div class="flex items-center gap-2">
+          <div class="w-8 md:w-40 shrink-0 flex items-center gap-2">
+            <i class="fa-solid ${h.icon} text-accent text-sm w-5 text-center"></i>
+            <span class="text-sm font-medium hidden md:inline truncate">${esc(h.name)}</span>
+          </div>
+          <div class="flex-1 grid grid-cols-7 gap-1">
+            ${week.map(d=>{const done=h.completedDates.includes(d);return`<div class="habit-check mx-auto ${done?'done':''}" data-action="toggle-habit" data-hid="${h.id}" data-date="${d}">${done?'<i class="fa-solid fa-check"></i>':''}</div>`}).join('')}
+          </div>
+          <div class="w-20 shrink-0 flex items-center gap-2 justify-end">
+            <div class="toggle ${h.reminder?'on':''}" data-action="toggle-reminder" data-hid="${h.id}" title="Reminder"></div>
+            ${h.reminder?`<span class="text-[10px] text-muted">${h.reminderTime}</span>`:''}
+            <button class="text-muted hover:text-danger text-xs" data-action="delete-habit" data-hid="${h.id}"><i class="fa-solid fa-trash-can"></i></button>
+          </div>
+        </div>
+        ${h.reminder?`<div class="mt-2 flex items-center gap-2 md:ml-[160px]">
+          <span class="text-[10px] text-muted">Reminder at</span>
+          <input type="time" class="input-field !py-1 !px-2 text-xs !w-28" value="${h.reminderTime}" data-action="change-reminder-time" data-hid="${h.id}">
+        </div>`:''}
+      </div>
+    `).join('')}</div>
+    <div class="h-4"></div>
+  </div>`;
+}
+
+/* ----- BRAIN DUMP ----- */
+function renderBrainDump(){
+  const entries=[...state.brainDump].sort((a,b)=>b.ts-a.ts);
+  return`<div class="max-w-2xl mx-auto p-4 md:p-6 space-y-4">
+    <div class="animate-in"><h1 class="font-heading text-xl md:text-2xl font-bold">Brain Dump</h1><p class="text-muted text-sm mt-0.5">Capture ideas instantly, sort them later</p></div>
+    <div class="flex gap-2 animate-in animate-in-d1">
+      <input type="text" id="bd-input" class="input-field flex-1" placeholder="What's on your mind?" maxlength="500" autocomplete="off">
+      <button class="btn-accent px-4" data-action="add-braindump"><i class="fa-solid fa-paper-plane"></i></button>
+    </div>
+    <div class="space-y-2">${entries.length?entries.map((e,i)=>`
+      <div class="card p-3 flex items-start gap-3 animate-in" style="animation-delay:${Math.min(i*0.03,0.3)}s">
+        <div class="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center shrink-0 mt-0.5"><i class="fa-solid fa-lightbulb text-accent text-xs"></i></div>
+        <div class="flex-1 min-w-0">
+          <p class="text-sm text-fg/90 whitespace-pre-wrap">${esc(e.text)}</p>
+          <p class="text-[10px] text-muted mt-1">${fmtDateNice(e.date)} at ${e.time}</p>
+        </div>
+        <button class="text-muted hover:text-danger text-xs shrink-0 mt-1" data-action="delete-braindump" data-id="${e.id}"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+    `).join(''):`<div class="text-center py-12 text-muted"><i class="fa-solid fa-brain text-3xl mb-3 opacity-30"></i><p class="text-sm">Your mind is clear. Add your first idea above.</p></div>`}</div>
+    <div class="h-4"></div>
+  </div>`;
+}
+
+/* ----- TODOS ----- */
+function renderTodos(){
+  const f=state.todoFilter;
+  let todos=state.todos.filter(t=>!t.completed);
+  const done=state.todos.filter(t=>t.completed);
+  if(f!=='all')todos=todos.filter(t=>t.category===f);
+  const allCounts={all:state.todos.filter(t=>!t.completed).length,work:state.todos.filter(t=>!t.completed&&t.category==='work').length,personal:state.todos.filter(t=>!t.completed&&t.category==='personal').length,financial:state.todos.filter(t=>!t.completed&&t.category==='financial').length};
+  const sf=state.showTodoForm;
+  return`<div class="max-w-2xl mx-auto p-4 md:p-6 space-y-4">
+    <div class="flex items-center justify-between animate-in">
+      <div><h1 class="font-heading text-xl md:text-2xl font-bold">To-Do</h1><p class="text-muted text-sm mt-0.5">Stay organized across every area of life</p></div>
+      <button class="btn-accent text-sm" data-action="toggle-todo-form"><i class="fa-solid fa-plus mr-1.5"></i>Add</button>
+    </div>
+    ${sf?`<div class="card p-4 space-y-3 animate-in border-accent/30">
+      <input type="text" id="todo-text" class="input-field" placeholder="What needs to be done?" autocomplete="off">
+      <div class="flex gap-3 flex-wrap">
+        <div class="flex-1 min-w-[120px]"><label class="text-[10px] text-muted uppercase tracking-wider mb-1 block">Category</label><select id="todo-cat" class="input-field text-sm">
+          <option value="work">Work</option><option value="personal">Personal</option><option value="financial">Financial</option>
+        </select></div>
+        <div class="flex-1 min-w-[120px]"><label class="text-[10px] text-muted uppercase tracking-wider mb-1 block">Priority</label><select id="todo-prio" class="input-field text-sm">
+          <option value="high">High</option><option value="medium" selected>Medium</option><option value="low">Low</option>
+        </select></div>
+      </div>
+      <div class="flex gap-2 justify-end">
+        <button class="btn-ghost text-sm" data-action="toggle-todo-form">Cancel</button>
+        <button class="btn-accent text-sm" data-action="save-todo">Add Task</button>
+      </div>
+    </div>`:''}
+    <div class="flex gap-1.5 animate-in animate-in-d1 overflow-x-auto pb-1">
+      ${['all','work','personal','financial'].map(c=>`<button class="px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all ${f===c?'bg-accent text-bg':'bg-elevated text-muted hover:text-fg'}" data-action="filter-todo" data-cat="${c}">${c==='all'?'All':c.charAt(0).toUpperCase()+c.slice(1)} (${allCounts[c]})</button>`).join('')}
+    </div>
+    <div class="space-y-2">${todos.length?todos.sort((a,b)=>{const po={high:0,medium:1,low:2};return po[a.priority]-po[b.priority]}).map((t,i)=>`
+      <div class="card p-3 flex items-center gap-3 animate-in" style="animation-delay:${Math.min(i*0.03,0.2)}s">
+        <div class="w-5 h-5 rounded-md border-2 cursor-pointer flex items-center justify-center shrink-0 transition-all hover:border-accent ${t.completed?'bg-accent border-accent':'border-border'}" data-action="toggle-todo" data-id="${t.id}">${t.completed?'<i class="fa-solid fa-check text-bg text-[10px]"></i>':''}</div>
+        <div class="prio-dot" style="background:${PRIO_COLORS[t.priority]}"></div>
+        <span class="flex-1 text-sm ${t.completed?'line-through text-muted':'text-fg/90'}">${esc(t.text)}</span>
+        <span class="cat-badge shrink-0" style="background:${CAT_COLORS[t.category]}20;color:${CAT_COLORS[t.category]}">${t.category}</span>
+        <button class="text-muted hover:text-danger text-xs shrink-0" data-action="delete-todo" data-id="${t.id}"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+    `).join(''):`<div class="text-center py-8 text-muted"><i class="fa-solid fa-check-double text-2xl mb-2 opacity-30"></i><p class="text-sm">All clear! No pending tasks.</p></div>`}</div>
+    ${done.length?`<div class="mt-4"><button class="text-xs text-muted hover:text-fg transition-colors flex items-center gap-1.5" data-action="toggle-done"><i class="fa-solid fa-chevron-right text-[8px] transition-transform" id="done-chevron"></i>Completed (${done.length})</button>
+    <div id="done-list" class="hidden mt-2 space-y-1.5">${done.map(t=>`
+      <div class="flex items-center gap-3 px-3 py-2 rounded-lg opacity-60">
+        <div class="w-5 h-5 rounded-md bg-accent/20 flex items-center justify-center shrink-0"><i class="fa-solid fa-check text-accent text-[10px]"></i></div>
+        <span class="flex-1 text-sm line-through text-muted">${esc(t.text)}</span>
+        <span class="cat-badge shrink-0" style="background:${CAT_COLORS[t.category]}15;color:${CAT_COLORS[t.category]}60">${t.category}</span>
+        <button class="text-muted hover:text-danger text-xs" data-action="delete-todo" data-id="${t.id}"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+    `).join('')}</div></div>`:''}
+    <div class="h-4"></div>
+  </div>`;
+}
+
+/* ----- VISION ----- */
+function renderVision(){
+  return`<div class="max-w-3xl mx-auto p-4 md:p-6 space-y-4">
+    <div class="flex items-center justify-between animate-in">
+      <div><h1 class="font-heading text-xl md:text-2xl font-bold">Vision Board</h1><p class="text-muted text-sm mt-0.5">Visualize the life you want to create</p></div>
+      <button class="btn-accent text-sm" data-action="add-vision"><i class="fa-solid fa-plus mr-1.5"></i>Add Card</button>
+    </div>
+    <div class="vision-grid">${state.visionBoard.map((v,i)=>`
+      <div class="vision-card card overflow-hidden animate-in relative group" style="animation-delay:${Math.min(i*0.05,0.3)}s">
+        <button class="absolute top-2 right-2 w-6 h-6 rounded-full bg-black/50 text-white/70 text-xs flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10" data-action="delete-vision" data-id="${v.id}"><i class="fa-solid fa-xmark"></i></button>
+        ${v.type==='text'?`<div class="p-4" style="background:linear-gradient(135deg,${v.color}20,${v.color}05)">
+          <p class="font-heading font-semibold text-base" style="color:${v.color}">${esc(v.content)}</p>
+        </div>`:`<img src="${esc(v.url)}" alt="Vision" class="w-full object-cover" style="min-height:120px" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22 fill=%22%23222%22%3E%3Crect width=%22400%22 height=%22300%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 fill=%22%23555%22 font-size=%2216%22%3EImage not found%3C/text%3E%3C/svg%3E'">`}
+      </div>
+    `).join('')}</div>
+    ${!state.visionBoard.length?`<div class="text-center py-16 text-muted"><i class="fa-solid fa-image text-3xl mb-3 opacity-30"></i><p class="text-sm">Your vision board is empty. Start adding your dreams.</p></div>`:''}
+    <div class="h-4"></div>
+  </div>`;
+}
+
+/* ----- GOALS ----- */
+function renderGoals(){
+  return`<div class="max-w-2xl mx-auto p-4 md:p-6 space-y-4">
+    <div class="flex items-center justify-between animate-in">
+      <div><h1 class="font-heading text-xl md:text-2xl font-bold">Long Term Goals</h1><p class="text-muted text-sm mt-0.5">Break big dreams into achievable milestones</p></div>
+      <button class="btn-accent text-sm" data-action="add-goal"><i class="fa-solid fa-plus mr-1.5"></i>Add Goal</button>
+    </div>
+    <div class="space-y-3">${state.goals.map((g,gi)=>{
+      const done=g.milestones.filter(m=>m.done).length;const total=g.milestones.length;const pct=total?Math.round(done/total*100):0;
+      const days=daysUntil(g.deadline);const expanded=state.expandedGoal===g.id;
+      return`<div class="card overflow-hidden animate-in" style="animation-delay:${gi*0.05}s">
+        <div class="p-4 cursor-pointer" data-action="toggle-goal" data-gid="${g.id}">
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex-1">
+              <h3 class="font-heading font-semibold text-base">${esc(g.title)}</h3>
+              <p class="text-muted text-xs mt-0.5">${esc(g.description)}</p>
+            </div>
+            <div class="flex items-center gap-2 shrink-0">
+              <span class="text-[10px] px-2 py-0.5 rounded-full ${days<0?'bg-danger/15 text-danger':days===0?'bg-accent/15 text-accent':'bg-border text-muted'}">${days<0?'Overdue':days===0?'Today':days+'d left'}</span>
+              <button class="text-muted hover:text-danger text-xs" data-action="delete-goal" data-gid="${g.id}" onclick="event.stopPropagation()"><i class="fa-solid fa-trash-can"></i></button>
+              <i class="fa-solid fa-chevron-down text-muted text-xs transition-transform ${expanded?'rotate-180':''}"></i>
+            </div>
+          </div>
+          <div class="mt-3 flex items-center gap-3">
+            <div class="flex-1 h-2 bg-border rounded-full overflow-hidden"><div class="h-full rounded-full transition-all" style="width:${pct}%;background:#D4A04A"></div></div>
+            <span class="text-xs text-muted font-medium shrink-0">${done}/${total}</span>
+          </div>
+        </div>
+        ${expanded?`<div class="border-t border-border p-4 space-y-2 bg-bg/30">
+          ${g.milestones.map(m=>`<div class="flex items-center gap-3">
+            <div class="w-5 h-5 rounded-md border-2 cursor-pointer flex items-center justify-center shrink-0 transition-all hover:border-accent ${m.done?'bg-accent border-accent':'border-border'}" data-action="toggle-milestone" data-gid="${g.id}" data-mid="${m.id}">${m.done?'<i class="fa-solid fa-check text-bg text-[10px]"></i>':''}</div>
+            <span class="text-sm flex-1 ${m.done?'line-through text-muted':'text-fg/90'}">${esc(m.text)}</span>
+            <button class="text-muted hover:text-danger text-xs" data-action="delete-milestone" data-gid="${g.id}" data-mid="${m.id}"><i class="fa-solid fa-xmark"></i></button>
+          </div>`).join('')}
+          <div class="flex gap-2 mt-2">
+            <input type="text" id="milestone-input" class="input-field text-sm flex-1" placeholder="Add a milestone..." autocomplete="off">
+            <button class="btn-accent text-sm px-3" data-action="add-milestone" data-gid="${g.id}">Add</button>
+          </div>
+        </div>`:''}
+      </div>`
+    }).join('')}</div>
+    ${!state.goals.length?`<div class="text-center py-16 text-muted"><i class="fa-solid fa-bullseye text-3xl mb-3 opacity-30"></i><p class="text-sm">No goals yet. What do you want to achieve?</p></div>`:''}
+    <div class="h-4"></div>
+  </div>`;
+}
+
+/* ===== BLOCK MODAL BUILDER ===== */
+function buildBlockModal(existingBlock){
+  const isEdit=!!existingBlock;
+  const b=existingBlock||{name:'',startHour:9,endHour:17,color:BLOCK_COLORS[0]};
+  const hourOpts=Array.from({length:24},(_,h)=>`<option value="${h}">${fmtHour(h)} (${String(h).padStart(2,'0')}:00)</option>`).join('');
+
+  showModal(`<h3 class="font-heading font-semibold text-lg mb-4">${isEdit?'Edit':'Create'} Time Block</h3>
+    <div class="space-y-4">
+      <div><label class="text-xs text-muted uppercase tracking-wider mb-1 block">Block Name</label>
+        <input type="text" id="blk-name" class="input-field" placeholder="e.g. Sleep, Office, Gym" maxlength="40" value="${esc(b.name)}" autocomplete="off"></div>
+      <div class="grid grid-cols-2 gap-3">
+        <div><label class="text-xs text-muted uppercase tracking-wider mb-1 block">From</label>
+          <select id="blk-start" class="input-field text-sm">${hourOpts}</select></div>
+        <div><label class="text-xs text-muted uppercase tracking-wider mb-1 block">To</label>
+          <select id="blk-end" class="input-field text-sm">${hourOpts}</select></div>
+      </div>
+      <div class="text-xs text-muted flex items-center gap-1.5"><i class="fa-solid fa-circle-info text-accent"></i>
+        <span>Set "To" earlier than "From" for overnight blocks (e.g. 10 PM to 7 AM)</span></div>
+      <div><label class="text-xs text-muted uppercase tracking-wider mb-1 block">Color</label>
+        <div class="flex flex-wrap gap-2" id="blk-colors">${BLOCK_COLORS.map((c,i)=>`<button type="button" class="w-8 h-8 rounded-full border-2 transition-all blk-color-pick ${c===b.color?'border-fg scale-110':'border-transparent hover:border-fg/50'}" style="background:${c}" data-color="${c}"></button>`).join('')}</div></div>
+      <!-- Live Preview -->
+      <div>
+        <label class="text-xs text-muted uppercase tracking-wider mb-2 block">Preview (selected hours highlighted)</label>
+        <div id="blk-preview" class="grid grid-cols-12 gap-1"></div>
+      </div>
+      <div id="blk-conflict" class="hidden text-xs text-danger flex items-center gap-1.5"><i class="fa-solid fa-triangle-exclamation"></i><span>Overlaps with existing block</span></div>
+      <div class="flex gap-2 justify-end">
+        <button class="btn-ghost" onclick="closeModal()">Cancel</button>
+        <button class="btn-accent" id="save-blk-btn">${isEdit?'Update':'Create'} Block</button>
+      </div>
+    </div>`);
+
+  // Set initial values
+  document.getElementById('blk-start').value=b.startHour;
+  document.getElementById('blk-end').value=b.endHour;
+  let selectedColor=b.color;
+  const editId=isEdit?b.id:null;
+
+  // Color picker
+  document.getElementById('blk-colors').addEventListener('click',ev=>{
+    const btn=ev.target.closest('.blk-color-pick');if(!btn)return;
+    document.querySelectorAll('.blk-color-pick').forEach(x=>{x.classList.remove('border-fg','scale-110');x.classList.add('border-transparent')});
+    btn.classList.add('border-fg','scale-110');btn.classList.remove('border-transparent');
+    selectedColor=btn.dataset.color;
+    updatePreview();
+  });
+
+  // Live preview
+  function getPreviewBlock(){
+    return{name:'Preview',startHour:+document.getElementById('blk-start').value,endHour:+document.getElementById('blk-end').value,color:selectedColor};
+  }
+  function updatePreview(){
+    const pb=getPreviewBlock();
+    const grid=document.getElementById('blk-preview');
+    grid.innerHTML=Array.from({length:24},(_,h)=>{
+      const inP=isInBlock(h,pb);
+      const existingBlk=getBlockForHour(h);
+      const inExisting=existingBlk&&(!isEdit||existingBlk.id!==editId);
+      let bg=inP?selectedColor:'#1E1E1E';
+      let txtColor=inP?'#0C0C0C':'#7A756C';
+      let border=inExisting&&inP?'2px solid #D9534F':'none';
+      return`<div class="h-7 rounded flex items-center justify-center text-[9px] font-medium" style="background:${bg};color:${txtColor};border:${border}" title="${fmtHour(h)}${inExisting?' (conflict)':''}">${fmtHourShort(h)}</div>`;
+    }).join('');
+    // Check conflicts
+    const conflictEl=document.getElementById('blk-conflict');
+    let hasConflict=false;
+    for(let h=0;h<24;h++){
+      if(!isInBlock(h,pb))continue;
+      const eb=getBlockForHour(h);
+      if(eb&&(!isEdit||eb.id!==editId)){hasConflict=true;break}
+    }
+    conflictEl.classList.toggle('hidden',!hasConflict);
+  }
+  document.getElementById('blk-start').addEventListener('change',updatePreview);
+  document.getElementById('blk-end').addEventListener('change',updatePreview);
+  updatePreview();
+
+  // Save
+  document.getElementById('save-blk-btn').addEventListener('click',()=>{
+    const name=document.getElementById('blk-name').value.trim();
+    if(!name){toast('Please enter a block name','warning');return}
+    const sh=+document.getElementById('blk-start').value;
+    const eh=+document.getElementById('blk-end').value;
+    if(sh===eh){toast('Start and end hours cannot be the same','warning');return}
+    // Check conflicts
+    for(let h=0;h<24;h++){
+      if(!isInBlock(h,{startHour:sh,endHour:eh}))continue;
+      const eb=getBlockForHour(h);
+      if(eb&&(!isEdit||eb.id!==editId)){toast('This block overlaps with "'+eb.name+'". Remove or edit that block first.','warning');return}
+    }
+    if(isEdit){
+      const blk=state.timeBlocks.find(x=>x.id===editId);
+      if(blk){blk.name=name;blk.startHour=sh;blk.endHour=eh;blk.color=selectedColor}
+    }else{
+      state.timeBlocks.push({id:uid(),name,startHour:sh,endHour:eh,color:selectedColor});
+    }
+    saveState();closeModal();render();toast(isEdit?'Block updated':'Block created','success');
+  });
+
+  setTimeout(()=>document.getElementById('blk-name').focus(),100);
+}
+
+/* ===== EVENT HANDLING ===== */
+document.getElementById('app').addEventListener('click',e=>{
+  const t=e.target.closest('[data-action]');if(!t)return;
+  const a=t.dataset.action;
+
+  // Date navigation
+  if(a==='prev-day'){state.selectedDate=addDays(state.selectedDate,-1);saveState();render();return}
+  if(a==='next-day'){state.selectedDate=addDays(state.selectedDate,1);saveState();render();return}
+  if(a==='today-btn'){state.selectedDate=getToday();saveState();render();return}
+  if(a==='date-change'){state.selectedDate=t.value;saveState();render();return}
+
+  // Nav shortcuts from summary
+  if(a==='go-routine'){navigate('routine');return}
+  if(a==='go-habits'){navigate('habits');return}
+  if(a==='go-braindump'){navigate('braindump');return}
+  if(a==='go-todos'){navigate('todos');return}
+  if(a==='go-goals'){navigate('goals');return}
+
+  // === TIME BLOCKS ===
+  if(a==='add-block'){buildBlockModal(null);return}
+  if(a==='edit-block'){const blk=state.timeBlocks.find(x=>x.id===t.dataset.bid);if(blk)buildBlockModal(blk);return}
+  if(a==='delete-block'){state.timeBlocks=state.timeBlocks.filter(x=>x.id!==t.dataset.bid);saveState();render();toast('Block removed','info');return}
+
+  // === ROUTINE HOUR EDIT ===
+  if(a==='edit-hour'){
+    const h=+t.dataset.hour,d=state.selectedDate;
+    if(!state.routine[d])state.routine[d]={};
+    const current=state.routine[d][h]||'';
+    const block=getBlockForHour(h);
+    const blockLabel=block?`<span class="text-[10px] px-1.5 py-0.5 rounded mb-1 inline-block" style="background:${block.color}18;color:${block.color}">${esc(block.name)}</span>`:'';
+    t.innerHTML=`<div class="w-14 shrink-0 pt-0.5"><span class="text-xs font-medium text-accent">${fmtHour(h)}</span></div>
+      <div class="flex-1">${blockLabel}<textarea class="input-field flex-1 !py-1.5 text-sm resize-none" rows="2" autofocus placeholder="${block?'Add a note for this hour':'What did you do?'}">${esc(current)}</textarea></div>`;
+    const ta=t.querySelector('textarea');
+    ta.focus();ta.selectionStart=ta.value.length;
+    const save=()=>{const v=ta.value.trim();if(v)state.routine[d][h]=v;else delete state.routine[d][h];saveState();render()};
+    ta.addEventListener('blur',save);
+    ta.addEventListener('keydown',ev=>{if(ev.key==='Escape'){ta.value=current;ta.blur()}if(ev.key==='Enter'&&!ev.shiftKey){ev.preventDefault();ta.blur()}});
+    return;
+  }
+
+  // === HABITS ===
+  if(a==='toggle-habit'){
+    const hid=t.dataset.hid,date=t.dataset.date;
+    const h=state.habits.find(x=>x.id===hid);if(!h)return;
+    const idx=h.completedDates.indexOf(date);
+    if(idx>=0)h.completedDates.splice(idx,1);else h.completedDates.push(date);
+    saveState();render();return;
+  }
+  if(a==='toggle-reminder'){
+    const hid=t.dataset.hid;const h=state.habits.find(x=>x.id===hid);if(!h)return;
+    h.reminder=!h.reminder;
+    if(h.reminder&&('Notification'in window)&&Notification.permission==='default')Notification.requestPermission();
+    saveState();render();return;
+  }
+  if(a==='delete-habit'){state.habits=state.habits.filter(x=>x.id!==t.dataset.hid);saveState();render();toast('Habit removed','info');return}
+  if(a==='add-habit'){
+    const iconsHtml=HABIT_ICONS.map(ic=>`<button class="w-9 h-9 rounded-lg border-2 border-border hover:border-accent flex items-center justify-center transition-all habit-icon-pick" data-icon="${ic}" type="button"><i class="fa-solid ${ic} text-sm text-muted"></i></button>`).join('');
+    showModal(`<h3 class="font-heading font-semibold text-lg mb-4">New Habit</h3>
+      <div class="space-y-4">
+        <div><label class="text-xs text-muted uppercase tracking-wider mb-1 block">Name</label><input type="text" id="habit-name" class="input-field" placeholder="e.g. Morning stretch" maxlength="50" autocomplete="off"></div>
+        <div><label class="text-xs text-muted uppercase tracking-wider mb-1 block">Icon</label><div class="flex flex-wrap gap-2" id="icon-grid">${iconsHtml}</div></div>
+        <div class="flex items-center justify-between"><span class="text-sm">Enable Reminder</span><div class="toggle" id="new-habit-reminder"></div></div>
+        <div id="new-habit-time-wrap" class="hidden"><label class="text-xs text-muted uppercase tracking-wider mb-1 block">Reminder Time</label><input type="time" id="new-habit-time" class="input-field" value="08:00"></div>
+        <div class="flex gap-2 justify-end"><button class="btn-ghost" onclick="closeModal()">Cancel</button><button class="btn-accent" id="save-habit-btn">Create Habit</button></div>
+      </div>`);
+    let pickedIcon='fa-spa';
+    document.getElementById('icon-grid').addEventListener('click',ev=>{
+      const btn=ev.target.closest('.habit-icon-pick');if(!btn)return;
+      document.querySelectorAll('.habit-icon-pick').forEach(b=>{b.classList.remove('border-accent');b.querySelector('i').classList.remove('text-accent');b.querySelector('i').classList.add('text-muted')});
+      btn.classList.add('border-accent');btn.querySelector('i').classList.add('text-accent');btn.querySelector('i').classList.remove('text-muted');
+      pickedIcon=btn.dataset.icon;
+    });
+    const firstIcon=document.querySelector('.habit-icon-pick');if(firstIcon){firstIcon.classList.add('border-accent');firstIcon.querySelector('i').classList.add('text-accent');firstIcon.querySelector('i').classList.remove('text-muted')}
+    document.getElementById('new-habit-reminder').addEventListener('click',function(){this.classList.toggle('on');document.getElementById('new-habit-time-wrap').classList.toggle('hidden',!this.classList.contains('on'))});
+    document.getElementById('save-habit-btn').addEventListener('click',()=>{
+      const name=document.getElementById('habit-name').value.trim();if(!name){toast('Please enter a habit name','warning');return}
+      const rem=document.getElementById('new-habit-reminder').classList.contains('on');
+      state.habits.push({id:uid(),name,icon:pickedIcon,reminder:rem,reminderTime:rem?document.getElementById('new-habit-time').value:'08:00',completedDates:[]});
+      saveState();closeModal();render();toast('Habit created','success');
+    });
+    setTimeout(()=>document.getElementById('habit-name').focus(),100);
+    return;
+  }
+
+  // === BRAIN DUMP ===
+  if(a==='add-braindump'){
+    const input=document.getElementById('bd-input');if(!input)return;
+    const text=input.value.trim();if(!text)return;
+    const now=new Date();
+    state.brainDump.push({id:uid(),text,date:fmtDateKey(now),time:now.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'}),ts:now.getTime()});
+    input.value='';saveState();render();toast('Idea captured','success');return;
+  }
+  if(a==='delete-braindump'){state.brainDump=state.brainDump.filter(x=>x.id!==t.dataset.id);saveState();render();return}
+
+  // === TODOS ===
+  if(a==='toggle-todo-form'){state.showTodoForm=!state.showTodoForm;saveState();render();if(state.showTodoForm)setTimeout(()=>{const el=document.getElementById('todo-text');if(el)el.focus()},50);return}
+  if(a==='save-todo'){
+    const text=document.getElementById('todo-text').value.trim();if(!text){toast('Please enter a task','warning');return}
+    const cat=document.getElementById('todo-cat').value;const prio=document.getElementById('todo-prio').value;
+    state.todos.push({id:uid(),text,category:cat,priority:prio,completed:false,date:getToday(),created:Date.now()});
+    state.showTodoForm=false;saveState();render();toast('Task added','success');return;
+  }
+  if(a==='filter-todo'){state.todoFilter=t.dataset.cat;saveState();render();return}
+  if(a==='toggle-todo'){const td=state.todos.find(x=>x.id===t.dataset.id);if(!td)return;td.completed=!td.completed;td.completedDate=td.completed?getToday():null;saveState();render();return}
+  if(a==='delete-todo'){state.todos=state.todos.filter(x=>x.id!==t.dataset.id);saveState();render();return}
+  if(a==='toggle-done'){
+    const list=document.getElementById('done-list');const chev=document.getElementById('done-chevron');
+    if(list){list.classList.toggle('hidden');chev.style.transform=list.classList.contains('hidden')?'':'rotate(90deg)'}
+    return;
+  }
+
+  // === VISION ===
+  if(a==='add-vision'){
+    showModal(`<h3 class="font-heading font-semibold text-lg mb-4">Add to Vision Board</h3>
+      <div class="space-y-4">
+        <div class="flex gap-2">
+          <button class="flex-1 card p-3 text-center cursor-pointer hover:border-accent transition-colors vision-type-btn border-accent" data-vtype="text"><i class="fa-solid fa-font text-accent mb-1"></i><p class="text-sm">Text Card</p></button>
+          <button class="flex-1 card p-3 text-center cursor-pointer hover:border-accent transition-colors vision-type-btn" data-vtype="image"><i class="fa-solid fa-image text-muted mb-1"></i><p class="text-sm">Image Card</p></button>
+        </div>
+        <div id="vtext-fields"><input type="text" id="v-text" class="input-field" placeholder="Your vision..." maxlength="100" autocomplete="off">
+          <div class="flex flex-wrap gap-2 mt-3" id="v-colors">${VISION_COLORS.map((c,i)=>`<button class="w-7 h-7 rounded-full border-2 transition-all vcolor-pick ${i===0?'border-fg scale-110':'border-transparent'}" style="background:${c}" data-color="${c}"></button>`).join('')}</div>
+        </div>
+        <div id="vimg-fields" class="hidden"><input type="text" id="v-url" class="input-field" placeholder="Image URL..." autocomplete="off">
+          <button class="text-xs text-accent mt-2 hover:underline" id="v-random">Use random image</button></div>
+        <div class="flex gap-2 justify-end"><button class="btn-ghost" onclick="closeModal()">Cancel</button><button class="btn-accent" id="save-vision-btn">Add Card</button></div>
+      </div>`);
+    let vtype='text',vcolor=VISION_COLORS[0];
+    document.querySelectorAll('.vision-type-btn').forEach(btn=>{btn.addEventListener('click',()=>{
+      vtype=btn.dataset.vtype;
+      document.querySelectorAll('.vision-type-btn').forEach(b=>{b.classList.remove('border-accent');b.querySelector('i').classList.remove('text-accent');b.querySelector('i').classList.add('text-muted')});
+      btn.classList.add('border-accent');btn.querySelector('i').classList.add('text-accent');btn.querySelector('i').classList.remove('text-muted');
+      document.getElementById('vtext-fields').classList.toggle('hidden',vtype!=='text');
+      document.getElementById('vimg-fields').classList.toggle('hidden',vtype!=='image');
+    })});
+    document.getElementById('v-colors').addEventListener('click',ev=>{
+      const btn=ev.target.closest('.vcolor-pick');if(!btn)return;
+      document.querySelectorAll('.vcolor-pick').forEach(b=>{b.classList.remove('border-fg','scale-110');b.classList.add('border-transparent')});
+      btn.classList.add('border-fg','scale-110');btn.classList.remove('border-transparent');vcolor=btn.dataset.color;
+    });
+    document.getElementById('v-random').addEventListener('click',()=>{document.getElementById('v-url').value='https://picsum.photos/seed/'+uid()+'/400/300'});
+    document.getElementById('save-vision-btn').addEventListener('click',()=>{
+      if(vtype==='text'){const txt=document.getElementById('v-text').value.trim();if(!txt){toast('Please enter text','warning');return}
+        state.visionBoard.push({id:uid(),type:'text',content:txt,color:vcolor});
+      }else{const url=document.getElementById('v-url').value.trim();if(!url){toast('Please enter an image URL','warning');return}
+        state.visionBoard.push({id:uid(),type:'image',url});
+      }
+      saveState();closeModal();render();toast('Added to vision board','success');
+    });
+    return;
+  }
+  if(a==='delete-vision'){state.visionBoard=state.visionBoard.filter(x=>x.id!==t.dataset.id);saveState();render();return}
+
+  // === GOALS ===
+  if(a==='toggle-goal'){state.expandedGoal=state.expandedGoal===t.dataset.gid?null:t.dataset.gid;saveState();render();return}
+  if(a==='toggle-milestone'){const g=state.goals.find(x=>x.id===t.dataset.gid);if(!g)return;const m=g.milestones.find(x=>x.id===t.dataset.mid);if(!m)return;m.done=!m.done;saveState();render();return}
+  if(a==='delete-milestone'){const g=state.goals.find(x=>x.id===t.dataset.gid);if(!g)return;g.milestones=g.milestones.filter(x=>x.id!==t.dataset.mid);saveState();render();return}
+  if(a==='add-milestone'){
+    const input=document.getElementById('milestone-input');if(!input)return;
+    const text=input.value.trim();if(!text){toast('Enter a milestone','warning');return}
+    const g=state.goals.find(x=>x.id===t.dataset.gid);if(!g)return;
+    g.milestones.push({id:uid(),text,done:false});saveState();render();return;
+  }
+  if(a==='delete-goal'){state.goals=state.goals.filter(x=>x.id!==t.dataset.gid);if(state.expandedGoal===t.dataset.gid)state.expandedGoal=null;saveState();render();toast('Goal removed','info');return}
+  if(a==='add-goal'){
+    const minD=addDays(getToday(),1);
+    showModal(`<h3 class="font-heading font-semibold text-lg mb-4">New Long Term Goal</h3>
+      <div class="space-y-4">
+        <div><label class="text-xs text-muted uppercase tracking-wider mb-1 block">Goal Title</label><input type="text" id="goal-title" class="input-field" placeholder="e.g. Learn to code" maxlength="80" autocomplete="off"></div>
+        <div><label class="text-xs text-muted uppercase tracking-wider mb-1 block">Description</label><input type="text" id="goal-desc" class="input-field" placeholder="Brief description" maxlength="200" autocomplete="off"></div>
+        <div><label class="text-xs text-muted uppercase tracking-wider mb-1 block">Target Date</label><input type="date" id="goal-deadline" class="input-field" min="${minD}"></div>
+        <div class="flex gap-2 justify-end"><button class="btn-ghost" onclick="closeModal()">Cancel</button><button class="btn-accent" id="save-goal-btn">Create Goal</button></div>
+      </div>`);
+    document.getElementById('save-goal-btn').addEventListener('click',()=>{
+      const title=document.getElementById('goal-title').value.trim();if(!title){toast('Please enter a goal title','warning');return}
+      const desc=document.getElementById('goal-desc').value.trim();
+      const deadline=document.getElementById('goal-deadline').value;if(!deadline){toast('Please set a target date','warning');return}
+      state.goals.push({id:uid(),title,description:desc,deadline,milestones:[]});
+      saveState();closeModal();render();toast('Goal created','success');
+    });
+    setTimeout(()=>document.getElementById('goal-title').focus(),100);
+    return;
+  }
+});
+
+// Handle reminder time change
+document.getElementById('app').addEventListener('change',e=>{
+  if(e.target.dataset.action==='change-reminder-time'){
+    const h=state.habits.find(x=>x.id===e.target.dataset.hid);if(!h)return;
+    h.reminderTime=e.target.value;saveState();toast('Reminder time updated','success');
+  }
+});
+
+// Brain dump enter key
+document.getElementById('app').addEventListener('keydown',e=>{
+  if(e.target.id==='bd-input'&&e.key==='Enter'){
+    e.preventDefault();document.querySelector('[data-action="add-braindump"]')?.click();
+  }
+  if(e.target.id==='milestone-input'&&e.key==='Enter'){
+    e.preventDefault();document.querySelector(`[data-action="add-milestone"][data-gid="${e.target.closest('[data-action="add-milestone"]')?.dataset.gid}"]`)?.click();
+  }
+  if(e.target.id==='todo-text'&&e.key==='Enter'){
+    e.preventDefault();document.querySelector('[data-action="save-todo"]')?.click();
+  }
+});
+
+/* ===== REMINDER SYSTEM ===== */
+let lastReminderMinute=-1;
+function checkReminders(){
+  const now=new Date();const mm=now.getHours()*60+now.getMinutes();
+  if(mm===lastReminderMinute)return;lastReminderMinute=mm;
+  const today=getToday();const timeStr=String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0');
+  if(!state.shownReminders[today])state.shownReminders[today]=[];
+  state.habits.forEach(h=>{
+    if(h.reminder&&h.reminderTime===timeStr&&!state.shownReminders[today].includes(h.id)){
+      state.shownReminders[today].push(h.id);saveState();
+      toast(`Reminder: ${h.name}`,'info',5000);
+      if('Notification'in window&&Notification.permission==='granted'){
+        new Notification('Ascend Reminder',{body:h.name,icon:'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">⛰️</text></svg>'});
+      }
+    }
+  });
+}
+setInterval(checkReminders,15000);
+// Request notification permission on load
+if('Notification'in window&&Notification.permission==='default')Notification.requestPermission();
+
+/* ===== INIT ===== */
+loadState();
+buildNav();
+render();
+// Ensure selectedDate is valid
+if(!state.selectedDate||isNaN(new Date(state.selectedDate+'T12:00:00').getTime()))state.selectedDate=getToday();
+</script>
+<script>
+/* PWA: Manifest + Service Worker */
+(function(){
+
+  /* --- App Icon SVG --- */
+  var iconSvg = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='96' fill='%230C0C0C'/><path d='M256 130L390 350L122 350Z' fill='%23D4A04A' opacity='.25'/><path d='M256 190L360 350L152 350Z' fill='%23D4A04A'/><circle cx='370' cy='150' r='38' fill='%23D4A04A'/></svg>";
+  var iconUri = 'data:image/svg+xml,' + iconSvg;
+
+  /* --- Manifest --- */
+  var manifest = {
+    name: "Ascend — Personal Growth Hub",
+    short_name: "Ascend",
+    description: "Track routines, habits, goals, and ideas",
+    start_url: ".",
+    display: "standalone",
+    background_color: "#0C0C0C",
+    theme_color: "#0C0C0C",
+    orientation: "portrait-primary",
+    icons: [
+      { src: iconUri, sizes: "192x192", type: "image/svg+xml", purpose: "any maskable" },
+      { src: iconUri, sizes: "512x512", type: "image/svg+xml", purpose: "any maskable" }
+    ]
+  };
+  var mBlob = new Blob([JSON.stringify(manifest)], {type: 'application/json'});
+  var mUrl = URL.createObjectURL(mBlob);
+  var link = document.createElement('link');
+  link.rel = 'manifest';
+  link.href = mUrl;
+  document.head.appendChild(link);
+
+  /* --- Service Worker --- */
+  var swCode = [
+    "var CACHE='ascend-v2';",
+    "var URLS=['./',",
+    "'https://cdn.tailwindcss.com',",
+    "'https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap',",
+    "'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css'];",
+    "self.addEventListener('install',function(e){",
+    "e.waitUntil(caches.open(CACHE).then(function(c){return c.addAll(URLS)}));",
+    "self.skipWaiting()});",
+    "self.addEventListener('activate',function(e){",
+    "e.waitUntil(caches.keys().then(function(ks){return Promise.all(ks.filter(function(k){return k!==CACHE}).map(function(k){return caches.delete(k)}))}));",
+    "self.clients.claim()});",
+    "self.addEventListener('fetch',function(e){",
+    "e.respondWith(caches.match(e.request).then(function(r){",
+    "if(r)return r;",
+    "return fetch(e.request).then(function(res){",
+    "if(res.ok&&e.request.url.indexOf('http')===0){",
+    "var clone=res.clone();",
+    "caches.open(CACHE).then(function(c){c.put(e.request,clone)})}",
+    "return res})}).catch(function(){return caches.match('./')}))});"
+  ].join('\n');
+
+  if('serviceWorker' in navigator){
+    var swBlob = new Blob([swCode], {type: 'application/javascript'});
+    var swUrl = URL.createObjectURL(swBlob);
+    navigator.serviceWorker.register(swUrl, {scope: './'}).then(function(){
+      console.log('Ascend PWA ready');
+    }).catch(function(err){
+      console.log('SW note:', err.message);
+    });
+  }
+
+})();
+</script>
+</body>
+</html>
+	
